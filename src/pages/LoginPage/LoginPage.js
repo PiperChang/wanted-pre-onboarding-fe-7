@@ -1,23 +1,30 @@
 import React, { useState } from 'react'
 import { useValidChecker } from '../../hooks/auth'
 import styles from './LoginPage.module.css'
+import { signInAPI, signUpAPI } from '../../api/auth'
 
 export default function LoginPage() {
-    const [validFlag, setValidFlag] = useState({
-        email: false,
-        password: false,
+    const [inputValue, setInputValue] = useState({
+        email: '',
+        password: '',
     })
-    console.log(validFlag)
+
     const handleChange = (e) => {
-        setValidFlag({
-            ...validFlag,
-            [e.target.name]: new RegExp(e.target.pattern).test(e.target.value),
+        setInputValue({
+            ...inputValue,
+            [e.target.name]: e.target.value,
         })
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        signUpAPI(inputValue)
+    }
+
     return (
         <div>
             Login
-            <form>
+            <form onSubmit={handleSubmit}>
                 <input
                     placeholder="email"
                     name="email"
@@ -33,7 +40,12 @@ export default function LoginPage() {
                     onChange={handleChange}
                 />
                 <button
-                    disabled={!(validFlag.email && validFlag.password)}
+                    disabled={
+                        !(
+                            /.+@.+/.test(inputValue.email) &&
+                            /.{8,}/.test(inputValue.password)
+                        )
+                    }
                     className={styles.submitButton}
                 >
                     Submit
