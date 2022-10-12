@@ -23,7 +23,6 @@ export default function LoginPage() {
         switch (response.status) {
             case 400:
                 alert(response.data.message)
-
                 break
             case 201:
                 alert('회원가입이 완료되었습니다.')
@@ -41,14 +40,12 @@ export default function LoginPage() {
                     placeholder="email"
                     name="email"
                     required
-                    pattern=".+@.+"
                     onChange={handleChange}
                 />
                 <input
                     placeholder="password"
                     name="password"
                     required
-                    pattern=".{8,}"
                     onChange={handleChange}
                 />
                 <button

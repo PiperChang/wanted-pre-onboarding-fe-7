@@ -26,6 +26,7 @@ export default function RegisterPage() {
                 break
             case 201:
                 alert('회원가입이 완료되었습니다.')
+
                 break
             default:
                 break
