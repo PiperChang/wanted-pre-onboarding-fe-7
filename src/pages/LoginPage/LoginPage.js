@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useValidChecker } from '../../hooks/auth'
 import styles from './LoginPage.module.css'
-import { signInAPI, signUpAPI } from '../../api/auth'
+import { signInAPI } from '../../api/auth'
 
 export default function LoginPage() {
     const [inputValue, setInputValue] = useState({
@@ -16,9 +16,21 @@ export default function LoginPage() {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        signUpAPI(inputValue)
+        const response = await signInAPI(inputValue)
+        console.log(response)
+        switch (response.status) {
+            case 400:
+                alert(response.data.message)
+
+                break
+            case 201:
+                alert('회원가입이 완료되었습니다.')
+                break
+            default:
+                break
+        }
     }
 
     return (
