@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import styles from './RegisterPage.module.css'
 import { signUpAPI } from '../../api/auth'
+import { useNavigate } from 'react-router-dom'
 
 export default function RegisterPage() {
+    const navigate = useNavigate()
     const [inputValue, setInputValue] = useState({
         email: '',
         password: '',
@@ -26,7 +28,7 @@ export default function RegisterPage() {
                 break
             case 201:
                 alert('회원가입이 완료되었습니다.')
-
+                navigate('/')
                 break
             default:
                 break
