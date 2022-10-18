@@ -42,8 +42,8 @@ export const updateTodo = async (todo_info) => {
     }
 }
 
-export const deleteTodo = async (todo_info) => {
-    const url = `todos/:${todo_info.id}`
+export const deleteTodo = async (id) => {
+    const url = `todos/:${id}`
     try {
         const res = await authRequest.delete(url)
         return res
