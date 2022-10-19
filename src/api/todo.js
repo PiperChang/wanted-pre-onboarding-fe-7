@@ -26,7 +26,7 @@ export const getTodos = async () => {
 }
 
 export const updateTodo = async (todo_info) => {
-    const url = `todos/:${todo_info.id}`
+    const url = `todos/${todo_info.id}`
     try {
         const res = await authRequest.put(
             url,
@@ -35,6 +35,7 @@ export const updateTodo = async (todo_info) => {
                 isCompleted: todo_info.isCompleted,
             })
         )
+        console.log(res)
         return res
     } catch (err) {
         return err.response
