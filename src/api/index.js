@@ -8,12 +8,3 @@ export const request = axios.create({
     },
     timeout: 1000,
 })
-
-export const authRequest = axios.create({
-    baseURL: baseURL,
-    headers: {
-        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-        'Content-Type': 'application/json',
-    },
-    timeout: 1000,
-})

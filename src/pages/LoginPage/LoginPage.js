@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 // import { useValidChecker } from '../../hooks/auth'
 import styles from './LoginPage.module.css'
 import { signInAPI } from '../../api/auth'
 import { useNavigate } from 'react-router-dom'
+import { LoginContext } from '../../helper/Context'
 
 export default function LoginPage() {
+    const {LoggedIn, setLoggedIn} =useContext(LoginContext)
     const navigate = useNavigate()
     const [inputValue, setInputValue] = useState({
         email: '',
@@ -21,6 +23,7 @@ export default function LoginPage() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const response = await signInAPI(inputValue)
+        setLoggedIn(localStorage.getItem('access_token'))
         switch (response.status) {
             case 400:
                 alert(response.data.message)
