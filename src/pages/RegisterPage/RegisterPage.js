@@ -37,27 +37,38 @@ export default function RegisterPage() {
 
     return (
         <div>
-            RegisterPage
+            <h1 className={styles.H1}>RegisterPage</h1>
             <form onSubmit={handleSubmit}>
+                <br></br>
                 <input
+                    className={styles.Input}
                     placeholder="email"
                     name="email"
                     required
                     onChange={handleChange}
                 />
+                <br></br>
+                <br></br>
                 <input
+                    type="password"
+                    className={styles.Input}
                     placeholder="password"
                     name="password"
                     required
                     onChange={handleChange}
                 />
+                <br></br>
                 <input
+                    type="password"
+                    className={styles.Input}
                     placeholder="passwordCheck"
                     name="passwordCheck"
                     required
                     onChange={handleChange}
                 />
+                <br></br>
                 <button
+                    className={styles.Btn}
                     disabled={
                         !(
                             /.+@.+/.test(inputValue.email) &&
@@ -65,7 +76,6 @@ export default function RegisterPage() {
                             inputValue.password === inputValue.passwordCheck
                         )
                     }
-                    className={styles.submitButton}
                 >
                     Submit
                 </button>

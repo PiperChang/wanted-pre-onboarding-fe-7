@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react'
-// import { useValidChecker } from '../../hooks/auth'
 import styles from './LoginPage.module.css'
 import { signInAPI } from '../../api/auth'
 import { useNavigate } from 'react-router-dom'
 import { LoginContext } from '../../helper/Context'
 
 export default function LoginPage() {
-    const {LoggedIn, setLoggedIn} =useContext(LoginContext)
+    const { LoggedIn, setLoggedIn } = useContext(LoginContext)
     const navigate = useNavigate()
     const [inputValue, setInputValue] = useState({
         email: '',
@@ -41,21 +40,27 @@ export default function LoginPage() {
     }
 
     return (
-        <div>
-            <h1>Login</h1>
+        <div className={styles.Login}>
+            <h1 className={styles.H1}>Login</h1>
+            <br></br>
             <form onSubmit={handleSubmit}>
                 <input
+                    className={styles.Input}
                     placeholder="email"
                     name="email"
                     required
                     onChange={handleChange}
                 />
+                <br></br>
                 <input
+                    type="password"
+                    className={styles.Input}
                     placeholder="password"
                     name="password"
                     required
                     onChange={handleChange}
                 />
+                <br></br>
                 <button
                     disabled={
                         !(
@@ -63,7 +68,7 @@ export default function LoginPage() {
                             /.{8,}/.test(inputValue.password)
                         )
                     }
-                    className={styles.submitButton}
+                    className={styles.Btn}
                 >
                     Submit
                 </button>

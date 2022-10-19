@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage/HomePage'
 import LoginPage from './pages/LoginPage/LoginPage'
 import RegisterPage from './pages/RegisterPage/RegisterPage'
 import ToDoPage from './pages/ToDoPage/ToDoPage'
+import './App.css'
 
 function App() {    
     const [loggedIn, setLoggedIn]= useState(localStorage.getItem('access_token'))

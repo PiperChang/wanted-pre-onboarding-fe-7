@@ -1,0 +1,34 @@
+.H1 {
+    color: #1e6b7b;
+    font-weight: 800;
+    font-size: xx-large;
+    padding-bottom: 30px;
+  }
+  
+  .Input {
+      margin-bottom: 10px;
+  }
+  
+  .Btn {
+      position: relative;
+      border: none;
+      display: inline-block;
+      padding: 15px 30px;
+      border-radius: 15px;
+      font-family: "paybooc-Light", sans-serif;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.25s;
+      background-color: aliceblue;
+      color: #1e6b7b;
+  }
+  
+  .Btn:disabled {
+      background-color: rgba(240, 248, 255, 0.703);
+      color: rgba(128, 128, 128, 0.39);
+  }
+  .Btn:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+  }

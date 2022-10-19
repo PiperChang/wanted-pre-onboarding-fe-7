@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { createTodo, deleteTodo, updateTodo, getTodos } from '../../api/todo'
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai'
+import styles from './ToDoPage.module.css'
 
 const ToDo = ({ todo, handleDelete, handleUpdate }) => {
     const [updating, setUpdating] = useState(true)
@@ -10,7 +11,7 @@ const ToDo = ({ todo, handleDelete, handleUpdate }) => {
     }
 
     return (
-        <li key={todo.id}>
+        <li key={todo.id} className={styles.Li}>
             {updating ? (
                 <>
                     <input
@@ -23,7 +24,7 @@ const ToDo = ({ todo, handleDelete, handleUpdate }) => {
                             })
                         }
                     />
-                    <span>{todo.todo}</span>
+                    <span className={styles.Todo}>{todo.todo}</span>
 
                     <button id="삭제" onClick={() => handleDelete(todo.id)}>
                         <AiFillDelete />
@@ -33,7 +34,7 @@ const ToDo = ({ todo, handleDelete, handleUpdate }) => {
                     </button>
                 </>
             ) : (
-                <>
+                <div className={styles.Update}>
                     <form
                         id="update"
                         onSubmit={(e) => {
@@ -57,7 +58,7 @@ const ToDo = ({ todo, handleDelete, handleUpdate }) => {
                     <button id="취소" onClick={handleUpdating}>
                         취소
                     </button>
-                </>
+                </div>
             )}
         </li>
     )
@@ -108,8 +109,8 @@ export default function ToDoPage() {
     }
 
     return (
-        <div>
-            <h1>To Do List</h1>
+        <div className={styles.ToDoPage}>
+            <h1 className={styles.H1}>To Do List</h1>
             <form onSubmit={handleSubmit}>
                 <input type="text" name="todoInput" placeholder="Write to do" />
             </form>

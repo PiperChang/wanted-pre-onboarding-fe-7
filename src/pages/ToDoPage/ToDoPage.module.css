@@ -1,0 +1,36 @@
+.ToDoPage {
+    /* text-align: left; */
+}
+
+.Li {
+    text-align: left;
+    width: 50vw;
+    margin: 10px;
+}
+.Update {
+    display: flex;
+}
+
+.Li button {
+    font-size: medium;
+    padding: 3px;
+    color: black;
+    background-color: white;
+    border: white;
+    margin: 0;
+
+}
+
+.Todo {
+    width: 100%;
+    margin: 10px;
+    /* margin-right: ; */
+    border-bottom: aliceblue 1px solid;
+}
+
+.H1 {
+    color: #1e6b7b;
+    font-weight: 800;
+    font-size: xx-large;
+    padding-bottom: 30px;
+}
