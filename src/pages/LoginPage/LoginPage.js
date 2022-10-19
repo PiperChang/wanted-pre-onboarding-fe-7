@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useValidChecker } from '../../hooks/auth'
+// import { useValidChecker } from '../../hooks/auth'
 import styles from './LoginPage.module.css'
 import { signInAPI } from '../../api/auth'
 import { useNavigate } from 'react-router-dom'
@@ -30,7 +30,7 @@ export default function LoginPage() {
                 break
             case 200:
                 alert('환영합니다.')
-                navigate('/')
+                navigate('/todo')
                 break
             default:
                 break

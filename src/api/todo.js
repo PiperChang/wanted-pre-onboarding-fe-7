@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { authRequest } from '.'
 
 export const createTodo = async (todo) => {
@@ -43,7 +42,8 @@ export const updateTodo = async (todo_info) => {
 }
 
 export const deleteTodo = async (id) => {
-    const url = `todos/:${id}`
+    console.log(id)
+    const url = `todos/${id}`
     try {
         const res = await authRequest.delete(url)
         return res

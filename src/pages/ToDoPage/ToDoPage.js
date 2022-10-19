@@ -1,34 +1,46 @@
 import React, { useEffect, useState } from 'react'
 import { createTodo, deleteTodo, getTodos } from '../../api/todo'
-import { AiFillCheckCircle } from 'react-icons/ai'
+import { AiFillDelete, AiFillEdit } from 'react-icons/ai'
 
-const TodoList = ({ todos }) => {
-    const handleChangeCompleteBtn = (e) => {
-        // a = !e.target.checked
+const ToDo = ({
+    todo,
+    handleClickDeleteBtn,
+    handleClickUpdateBtn,
+    handleChangeCompleteBtn,
+}) => {
+    return (
+        <li key={todo.id}>
+            <input
+                type="checkbox"
+                defaultChecked={todo.isCompleted ? 'on' : 'off'}
+                onChange={()=> handleChangeCompleteBtn(todo.id)}
+            />
+            {todo.todo}
+            <button id="삭제" onClick={()=>handleClickDeleteBtn(todo.id)}>
+                <AiFillDelete />
+            </button>
+            <button id="수정" onClick={handleClickUpdateBtn}>
+                <AiFillEdit />
+            </button>
+        </li>
+    )
+}
+
+const TodoList = ({ todos, getTodosData }) => {
+    const handleChangeCompleteBtn = (e) => {}
+
+    const handleClickDeleteBtn = async (id) => {
+        await deleteTodo(id)
+        getTodosData()
     }
-    const handleClickDeleteBtn = (e) => {
-        deleteTodo(e.target.parentElement.key)
-    }
+
     const handleClickUpdateBtn = (e) => {}
+
     return (
         <ul>
             {todos.map((todo) => {
                 return (
-                    <li key={todo.id}>
-                        <input
-                            type="checkbox"
-                            checked={todo.isCompleted}
-                            onChange={handleChangeCompleteBtn}
-                        />
-                        <button id="삭제" onClick={handleClickDeleteBtn}>
-                            삭제
-                        </button>
-                        <button id="수정" onClick={handleClickUpdateBtn}>
-                            수정
-                        </button>
-                        {todo.todo}
-                        <AiFillCheckCircle />
-                    </li>
+                    <ToDo todo={todo} handleChangeCompleteBtn={handleChangeCompleteBtn} handleClickUpdateBtn={handleClickUpdateBtn} handleClickDeleteBtn = {handleClickDeleteBtn} />
                 )
             })}
         </ul>
@@ -37,18 +49,19 @@ const TodoList = ({ todos }) => {
 
 export default function ToDoPage() {
     const [todoList, setTodoList] = useState([])
+    async function getTodosData() {
+        const todos = await getTodos()
+        setTodoList(todos.data)
+    }
 
     useEffect(() => {
-        async function getTodosData() {
-            const todos = await getTodos()
-            setTodoList(todos.data)
-        }
         getTodosData()
     }, [])
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         const res = await createTodo(e.target[0].value)
-        console.log(res)
+        getTodosData()
     }
     return (
         <div>
@@ -56,7 +69,7 @@ export default function ToDoPage() {
             <form onSubmit={handleSubmit}>
                 <input type="text" name="todoInput" placeholder="Write to do" />
             </form>
-            <TodoList todos={todoList} />
+            <TodoList todos={todoList} getTodosData={getTodosData} />
         </div>
     )
 }
