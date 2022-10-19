@@ -1,5 +1,6 @@
 # 프로젝트 실행방법
 ```
+  git clone ~
   npm run build
   npm install -g serve ( 필요 시 )
   npx serve -s build
