@@ -5,7 +5,7 @@ import { AiFillDelete, AiFillEdit } from 'react-icons/ai'
 const ToDo = ({ todo, handleDelete, handleUpdate }) => {
     const [updating, setUpdating] = useState(true)
 
-    const handleClickUpdateBtn = () => {
+    const handleUpdating = () => {
         setUpdating(!updating)
     }
 
@@ -28,20 +28,21 @@ const ToDo = ({ todo, handleDelete, handleUpdate }) => {
                     <button id="삭제" onClick={() => handleDelete(todo.id)}>
                         <AiFillDelete />
                     </button>
-                    <button id="수정" onClick={handleClickUpdateBtn}>
+                    <button id="수정" onClick={handleUpdating}>
                         <AiFillEdit />
                     </button>
                 </>
             ) : (
                 <>
                     <form
+                        id="update"
                         onSubmit={(e) => {
                             e.preventDefault()
                             handleUpdate({
                                 ...todo,
                                 todo: e.target[0].value,
                             })
-                            setUpdating(!updating)
+                            handleUpdating()
                         }}
                     >
                         <input
@@ -49,10 +50,13 @@ const ToDo = ({ todo, handleDelete, handleUpdate }) => {
                             name="todoInput"
                             defaultValue={todo.todo}
                         />
-                        <button id="수정">
-                            <AiFillEdit />
-                        </button>
                     </form>
+                    <button type="submit" form="update">
+                        수정
+                    </button>
+                    <button id="취소" onClick={handleUpdating}>
+                        취소
+                    </button>
                 </>
             )}
         </li>
