@@ -13,3 +13,7 @@ https://wanted-challenge.herokuapp.com/
 - axios
 - react-icons
 - react-router-dom
+
+# 구현 내용
+- localStorage 이용한 회원가입 / 로그인 구현 기능
+
