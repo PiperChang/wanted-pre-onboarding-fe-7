@@ -1,6 +1,6 @@
 ## 목차
 - [프로젝트 실행 방법](#프로젝트-실행방법)
-- [Thanks](#😁-thanks)
+- [Thanks](#--thanks)
 ## 프로젝트 실행방법
 ```
   git clone ~
